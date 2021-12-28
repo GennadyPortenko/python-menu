@@ -14,6 +14,9 @@ class View:
         SELECTED = auto()
         UNSELECTED = auto()
 
+    def exit(self):
+        curses.endwin()
+
     def print_line(self, n, text, color):
         self.scr.addstr(n, 0, text, curses.color_pair(color))
 

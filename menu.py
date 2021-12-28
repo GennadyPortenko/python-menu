@@ -2,13 +2,12 @@ from element import Element
 
 
 class Menu:
-    elements = (
-        Element('connect to host', "ssh user@somehost"),
-        Element('build', "mvn install")
-    )
     current_elem_index = 0
 
-    def __init__(self, debug):
+    def __init__(self, debug, elems=None):
+        self.elements = eval(elems) if elems is not None else [
+            Element('empty')
+        ]
         self.debug = debug
         self.elements[self.current_elem_index].select()
 
