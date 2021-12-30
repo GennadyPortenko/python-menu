@@ -4,11 +4,22 @@ from element import Element
 class Menu:
     current_elem_index = 0
 
-    def __init__(self, debug, elems=None):
-        self.elements = eval(elems) if elems is not None else [
-            Element('empty')
-        ]
-        self.debug = debug
+    def __init__(self, logger, elems_str=None):
+        if elems_str is None:
+            self.elements = [
+                Element('empty')
+            ]
+        else:
+            try:
+                self.elements = eval(elems_str)
+            except:
+                self.elements = []
+                for item in elems_str.split(';'):
+                    if item and item.strip():
+                        self.elements.append(Element(item.lstrip()))
+
+
+        self.logger = logger
         self.elements[self.current_elem_index].select()
 
     def is_last_elem(self):

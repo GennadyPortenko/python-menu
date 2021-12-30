@@ -1,11 +1,11 @@
 from curses import wrapper
-import os
-from curses_debug import Debug
+from arguments import Arguments
+from socketlogger import SocketLogger
 
 from menu import Menu
 from curses_view import View
 
-from argparse import ArgumentParser
+DEBUG = True
 
 CLIP_CMD_WINDOWS = 'clip'
 CLIP_CMD_LINUX = 'xclip -sel clip'
@@ -13,15 +13,12 @@ CLIP_CMD = CLIP_CMD_LINUX
 
 ENTER_KEY = '\n'
 
-parser = ArgumentParser()
-parser.add_argument('--menu')
-args = parser.parse_args()
+args = Arguments().args
+logger = SocketLogger(args.logging_port)
 
 
 def main(stdscr):
-    debug = Debug(stdscr)
-
-    menu = Menu(debug, args.menu)
+    menu = Menu(logger, args.items)
     view = View(menu, stdscr)
 
     actions = {
@@ -41,6 +38,7 @@ def main(stdscr):
     while True:
         view.refresh()
         c = stdscr.getkey()
+        # logger.log(f'Pressed : {c}')
         if c == 'q' or c == ENTER_KEY:
             view.exit()
             break

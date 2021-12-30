@@ -7,7 +7,7 @@ menu = '''
 ]
 '''
 
-res = os.WEXITSTATUS(os.system(f'python3 main.py --menu "{menu}"'))
+res = os.WEXITSTATUS(os.system(f'python3 main.py --items"{menu}"'))
 print(f'output : {res}')
 
 

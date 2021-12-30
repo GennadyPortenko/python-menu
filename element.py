@@ -4,9 +4,6 @@ class Element:
         self.value = value
         self.selected = False
 
-    def __repr__(self):
-        return "Element({0}, {1})".format(self.name, self.value)
-
     def unselect(self):
         self.selected = False
 
