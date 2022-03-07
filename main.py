@@ -18,7 +18,7 @@ logger = SocketLogger(args.logging_port)
 
 
 def main(stdscr):
-    menu = Menu(logger, args.items)
+    menu = Menu(logger, args.delimiter, args.items)
     view = View(menu, stdscr)
 
     actions = {
@@ -34,7 +34,6 @@ def main(stdscr):
 
     stdscr.clear()
 
-    c = None
     while True:
         view.refresh()
         c = stdscr.getkey()

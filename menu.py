@@ -4,7 +4,7 @@ from element import Element
 class Menu:
     current_elem_index = 0
 
-    def __init__(self, logger, elems_str=None):
+    def __init__(self, logger, delimiter, elems_str=None):
         if elems_str is None:
             self.elements = [
                 Element('empty')
@@ -14,7 +14,7 @@ class Menu:
                 self.elements = eval(elems_str)
             except:
                 self.elements = []
-                for item in elems_str.split(';'):
+                for item in elems_str.split(delimiter):
                     if item and item.strip():
                         self.elements.append(Element(item.lstrip()))
 
