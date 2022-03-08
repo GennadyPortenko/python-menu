@@ -18,7 +18,7 @@ logger = SocketLogger(args.logging_port)
 
 
 def main(stdscr):
-    menu = Menu(logger, args.delimiter, args.items)
+    menu = Menu(logger, args.delimiter, args.element_inner_separator, args.items)
     view = View(menu, stdscr)
 
     actions = {
@@ -38,15 +38,22 @@ def main(stdscr):
         view.refresh()
         c = stdscr.getkey()
         # logger.log(f'Pressed : {c}')
-        if c == 'q' or c == ENTER_KEY:
+        if c == 'q':
             view.exit()
+            res = -1
+            break
+        if c == ENTER_KEY:
+            view.exit()
+            res = menu.current_elem_index
             break
         if actions.get(c) is not None:
             actions.get(c)()
 
     if actions.get(c) is not None:
         actions.get(c)()
-    exit(menu.current_elem_index)
+
+
+    exit(res)
 
 
 if __name__ == '__main__':

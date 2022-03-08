@@ -1,3 +1,3 @@
 #!/bin/bash
 
-./run-menu-wrapper.sh menu-1.txt
+pymenu-wrapper.sh menu-level-1.txt

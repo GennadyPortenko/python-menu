@@ -5,6 +5,7 @@ if [[ -z "${MENU_FILE}" ]]; then  # if TOPIC undefined
   exit
 fi
 
+element_inner_separator='> > > '
 delimiter=':::'
 options=()
 while read line; do
@@ -15,9 +16,9 @@ done < $MENU_FILE
 # echo "${options[@]}"
 # opts="${options[@]}"
 
-python3 main.py --logging-port 1299 --items "${opts}" --delimiter $delimiter
+python3 ${PYMENU_HOME}/pymenu.py --logging-port 1299 --items "${opts}" --delimiter $delimiter --element-inner-separator "> > >"
 
-#python3 main.py --logging-port 1299 --items "[\
+#python3 pymenu.py --logging-port 1299 --items "[\
 #  Element('Option 1'), \
 #  Element('Option 2'), \
 #]"

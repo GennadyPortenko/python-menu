@@ -1,3 +1,0 @@
-./run-menu-wrapper.sh menu-2.txt
-echo Option 1-1
-echo Option 1-2
